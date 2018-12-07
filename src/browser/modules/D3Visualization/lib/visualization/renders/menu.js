@@ -23,7 +23,7 @@ import icons from '../renders/icons'
 
 const noop = function () {}
 
-const numberOfItemsInContextMenu = 3
+const numberOfItemsInContextMenu = 4
 
 const arc = function (radius, itemNumber, width) {
   if (width == null) {
@@ -208,10 +208,28 @@ const donutUnlockNode = new Renderer({
   onTick: noop
 })
 
+const donutQueryNode = new Renderer({
+  onGraphChange (selection, viz) {
+    return createMenuItem(
+      selection,
+      viz,
+      'nodeQuery',
+      4,
+      'query_node',
+      [-6, 0],
+      'Query',
+      'Query relational database for more details'
+    )
+  },
+
+  onTick: noop
+})
+
 const menu = []
 
 menu.push(donutExpandNode)
 menu.push(donutRemoveNode)
 menu.push(donutUnlockNode)
+menu.push(donutQueryNode)
 
 export { menu }

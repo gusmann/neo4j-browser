@@ -19,6 +19,7 @@
  */
 
 export const VISUALIZATION = 'VISUALIZATION'
+export const EXTENDEDVISUALIZATION = 'EXTENDEDVISUALIZATION'
 export const PLAN = 'PLAN'
 export const WARNINGS = 'WARNINGS'
 export const ERRORS = 'ERRORS'

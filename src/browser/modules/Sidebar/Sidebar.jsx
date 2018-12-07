@@ -21,12 +21,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import DatabaseInfo from '../DatabaseInfo/DatabaseInfo'
-import Favorites from './Favorites'
-import Documents from './Documents'
-import About from './About'
+// import Favorites from './Favorites'
+// import Documents from './Documents'
+// import About from './About'
 import TabNavigation from 'browser-components/TabNavigation/Navigation'
 import Settings from './Settings'
-import BrowserSync from './../Sync/BrowserSync'
+// import BrowserSync from './../Sync/BrowserSync'
 import { isUserSignedIn } from 'shared/modules/sync/syncDuck'
 import { useBrowserSync } from 'shared/modules/features/featuresDuck'
 import {
@@ -37,11 +37,11 @@ import {
 
 import {
   DatabaseIcon,
-  FavoritesIcon,
-  DocumentsIcon,
-  CloudSyncIcon,
-  SettingsIcon,
-  AboutIcon
+  // FavoritesIcon,
+  // DocumentsIcon,
+  // CloudSyncIcon,
+  SettingsIcon
+  // AboutIcon
 } from 'browser-components/icons/Icons'
 
 class Sidebar extends Component {
@@ -49,10 +49,10 @@ class Sidebar extends Component {
     const openDrawer = this.props.openDrawer
     const onNavClick = this.props.onNavClick
     const DatabaseDrawer = DatabaseInfo
-    const FavoritesDrawer = Favorites
-    const DocumentsDrawer = Documents
+    // const FavoritesDrawer = Favorites
+    // const DocumentsDrawer = Documents
     const SettingsDrawer = Settings
-    const AboutDrawer = About
+    // const AboutDrawer = About
     const topNavItemsList = [
       {
         name: 'DB',
@@ -65,33 +65,33 @@ class Sidebar extends Component {
           />
         ),
         content: DatabaseDrawer
-      },
-      {
-        name: 'Favorites',
-        title: 'Favorites',
-        icon: isOpen => <FavoritesIcon isOpen={isOpen} title='Favorites' />,
-        content: FavoritesDrawer
-      },
-      {
-        name: 'Documents',
-        title: 'Documentation',
-        icon: isOpen => <DocumentsIcon isOpen={isOpen} title='Documentation' />,
-        content: DocumentsDrawer
       }
+      // {
+      //   name: 'Favorites',
+      //   title: 'Favorites',
+      //   icon: isOpen => <FavoritesIcon isOpen={isOpen} title='Favorites' />,
+      //   content: FavoritesDrawer
+      // },
+      // {
+      //   name: 'Documents',
+      //   title: 'Documentation',
+      //   icon: isOpen => <DocumentsIcon isOpen={isOpen} title='Documentation' />,
+      //   content: DocumentsDrawer
+      // }
     ]
     const bottomNavItemsList = [
-      {
-        name: 'Sync',
-        title: 'Cloud Services',
-        icon: isOpen => (
-          <CloudSyncIcon
-            isOpen={isOpen}
-            connected={this.props.syncConnected}
-            title='Cloud Services'
-          />
-        ),
-        content: BrowserSync
-      },
+      // {
+      //   name: 'Sync',
+      //   title: 'Cloud Services',
+      //   icon: isOpen => (
+      //     <CloudSyncIcon
+      //       isOpen={isOpen}
+      //       connected={this.props.syncConnected}
+      //       title='Cloud Services'
+      //     />
+      //   ),
+      //   content: BrowserSync
+      // },
       {
         name: 'Settings',
         title: 'Browser Settings',
@@ -99,13 +99,13 @@ class Sidebar extends Component {
           <SettingsIcon isOpen={isOpen} title='Browser Settings' />
         ),
         content: SettingsDrawer
-      },
-      {
-        name: 'About',
-        title: 'About Neo4j',
-        icon: isOpen => <AboutIcon isOpen={isOpen} title='About Neo4j' />,
-        content: AboutDrawer
       }
+      // {
+      //   name: 'About',
+      //   title: 'About Neo4j',
+      //   icon: isOpen => <AboutIcon isOpen={isOpen} title='About Neo4j' />,
+      //   content: AboutDrawer
+      // }
     ]
 
     return (

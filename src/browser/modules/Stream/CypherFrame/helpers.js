@@ -159,7 +159,7 @@ export const initialView = (props, state = {}) => {
   }
   // No we don't care about the recentView
   // If the response have viz elements, we show the viz
-  if (resultHasNodes(props.request)) return viewTypes.VISUALIZATION
+  if (resultHasNodes(props.request)) return viewTypes.EXTENDEDVISUALIZATION
   return viewTypes.TABLE
 }
 

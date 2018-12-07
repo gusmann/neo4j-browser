@@ -195,6 +195,9 @@ export const TableIcon = () => (
 export const VisualizationIcon = () => (
   <IconContainer icon={neo4j} text='Graph' width={20} />
 )
+export const ExtendedVisualizationIcon = () => (
+  <IconContainer icon={databaseCheck} text='Extended Graph' width={18} />
+)
 export const AsciiIcon = () => (
   <IconContainer icon={Text201} text='Text' width={18} />
 )

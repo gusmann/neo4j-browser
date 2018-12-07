@@ -73,6 +73,21 @@ export class GraphEventHandler {
     this.graphView.update()
     this.graphModelChanged()
   }
+  nodeQuery (d) {
+    if (!d) {
+      return
+    }
+    d.fixed = true
+    if (!d.selected) {
+      this.selectItem(d)
+      this.onItemSelected({
+        type: 'node',
+        item: { id: d.id, labels: d.labels, properties: d.propertyList }
+      })
+    } else {
+      this.deselectItem()
+    }
+  }
 
   nodeClicked (d) {
     if (!d) {
@@ -200,6 +215,7 @@ export class GraphEventHandler {
       .on('relationshipClicked', this.onRelationshipClicked.bind(this))
       .on('canvasClicked', this.onCanvasClicked.bind(this))
       .on('nodeClose', this.nodeClose.bind(this))
+      .on('nodeQuery', this.nodeQuery.bind(this))
       .on('nodeClicked', this.nodeClicked.bind(this))
       .on('nodeDblClicked', this.nodeDblClicked.bind(this))
       .on('nodeUnlock', this.nodeUnlock.bind(this))

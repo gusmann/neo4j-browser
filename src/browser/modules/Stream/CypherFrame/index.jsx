@@ -27,6 +27,7 @@ import { getRequest } from 'shared/modules/requests/requestsDuck'
 import FrameSidebar from '../FrameSidebar'
 import {
   VisualizationIcon,
+  ExtendedVisualizationIcon,
   TableIcon,
   AsciiIcon,
   CodeIcon,
@@ -42,6 +43,7 @@ import { ErrorsViewBus as ErrorsView, ErrorsStatusbar } from './ErrorsView'
 import { WarningsView, WarningsStatusbar } from './WarningsView'
 import { PlanView, PlanStatusbar } from './PlanView'
 import { VisualizationConnectedBus } from './VisualizationView'
+import { ExtendedVisualizationConnectedBus } from './ExtendedVisualizationView'
 import Render from 'browser-components/Render'
 import Display from 'browser-components/Display'
 import * as viewTypes from 'shared/modules/stream/frameViewTypes'
@@ -132,6 +134,16 @@ export class CypherFrame extends Component {
   sidebar = () => {
     return (
       <FrameSidebar>
+        <Render if={resultHasNodes(this.props.request) && !this.state.errors}>
+          <CypherFrameButton
+            selected={this.state.openView === viewTypes.EXTENDEDVISUALIZATION}
+            onClick={() => {
+              this.changeView(viewTypes.EXTENDEDVISUALIZATION)
+            }}
+          >
+            <ExtendedVisualizationIcon />
+          </CypherFrameButton>
+        </Render>
         <Render if={resultHasNodes(this.props.request) && !this.state.errors}>
           <CypherFrameButton
             selected={this.state.openView === viewTypes.VISUALIZATION}
@@ -226,6 +238,25 @@ export class CypherFrame extends Component {
         fullscreen={this.state.fullscreen}
         collapsed={this.state.collapse}
       >
+        <Display
+          if={this.state.openView === viewTypes.ExtendedVisualization}
+          lazy
+        >
+          <ExtendedVisualizationConnectedBus
+            {...this.state}
+            result={result}
+            updated={this.props.request.updated}
+            setParentState={this.setState.bind(this)}
+            frameHeight={this.state.frameHeight}
+            assignVisElement={(svgElement, graphElement) => {
+              this.visElement = { svgElement, graphElement, type: 'graph' }
+              this.setState({ hasVis: true })
+            }}
+            initialNodeDisplay={this.props.initialNodeDisplay}
+            autoComplete={this.props.autoComplete}
+            maxNeighbours={this.props.maxNeighbours}
+          />
+        </Display>
         <Display if={this.state.openView === viewTypes.TEXT} lazy>
           <AsciiView
             {...this.state}
